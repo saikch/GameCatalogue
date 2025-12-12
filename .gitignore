@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET build outputs
+bin/
+obj/
+
+# Rider / VSCode (safe)
+.idea/
+.vscode/
+
+# Angular
+node_modules/
+dist/
+.angular/
+.cache/
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
+.DS_Store

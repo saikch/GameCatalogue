@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Games</h2>
+    <button class="btn btn-primary" (click)="onCreate()">Add Game</button>
+  </div>
+
+  
+
+  <div *ngIf="isLoading" class="alert alert-info">Loading...</div>
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+  
+  <table class="table table-striped" *ngIf="games.length && !isLoading">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Platform</th>
+        <th>Genre</th>
+        <th>Release Date</th>
+        <th class="text-end">Price</th>
+        <th class="text-center">Available</th>
+        <th class="text-end">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of games">
+        <td>{{ game.title }}</td>
+        <td>{{ game.platform }}</td>
+        <td>{{ game.genre }}</td>
+        <td>{{ game.releaseDate | date }}</td>
+        <td class="text-end">{{ game.price | currency }}</td>
+        <td class="text-center">
+          <span [class.text-success]="game.isAvailable"
+                [class.text-danger]="!game.isAvailable">
+            {{ game.isAvailable ? 'Yes' : 'No' }}
+          </span>
+        </td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-secondary me-2" (click)="onEdit(game)">
+            Edit
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="onDelete(game)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <div *ngIf="!games.length && !isLoading" class="text-muted">
+    No games found. Click "Add Game" to create one.
+  </div>
+  
+
+   

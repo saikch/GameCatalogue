@@ -20,7 +20,7 @@ The focus of this solution is clean structure, readability, and an end-to-end wo
 
 ## Repository Structure
 
-GameCatalogue/
+GamesCatalogue/
 │
 ├── GamesCatalogue.Api/
 │   ├── Controllers/
@@ -28,42 +28,52 @@ GameCatalogue/
 │   ├── Properties/
 │   ├── appsettings.json
 │   ├── appsettings.Development.json
-│   ├── Program.cs
-│   └── GamesCatalogue.Api.csproj
+│   └── Program.cs
 │
 ├── GamesCatalogue.Application/
-│   ├── DTOs/                 # Data Transfer Objects
-│   ├── Entities/             # Domain entities
-│   ├── Interfaces/           # Service contracts
-│   ├── Services/             # Application business logic
-│   └── GamesCatalogue.Application.csproj
+│   ├── DTOs/
+│   │   ├── VideoGameDto.cs
+│   │   ├── CreateVideoGameDto.cs
+│   │   └── UpdateVideoGameDto.cs
+│   │
+│   ├── Entities/
+│   │   └── VideoGame.cs
+│   │
+│   ├── Interfaces/
+│   │   ├── IVideoGameService.cs
+│   │   └── IVideoGameRepository.cs
+│   │
+│   └── Services/
+│       └── VideoGameService.cs
 │
 ├── GamesCatalogue.Infrastructure/
-│   ├── Data/                 # EF Core DbContext
-│   ├── Migrations/           # EF Core migrations
-│   ├── Repositories/         # Data access implementations
-│   └── GamesCatalogue.Infrastructure.csproj
+│   ├── Data/
+│   │   └── ApplicationDbContext.cs
+│   │
+│   ├── Migrations/
+│   │
+│   └── Repositories/
+│       └── VideoGameRepository.cs
 │
 ├── GamesCatalogue.Web.UI/
-│   ├── src/
-│   │   ├── app/
-│   │   │   ├── core/
-│   │   │   └── features/
-│   │   │       └── games/
-│   │   │           ├── models/
-│   │   │           │   └── game.model.ts
-│   │   │           ├── pages/
-│   │   │           │   ├── games-list/
-│   │   │           │   └── games-edit/
-│   │   │           └── services/
-│   │   │               └── games.service.ts
-│   │   └── environments/
-│   ├── angular.json
-│   └── package.json
+│   └── src/
+│       └── app/
+│           └── features/
+│               └── games/
+│                   ├── models/
+│                   ├── pages/
+│                   └── services/
+│
+├── GamesCatalogue.Tests/
+│   ├── Services/
+│   │   └── VideoGameServiceTests.cs
+│   │
+│   └── Controllers/
+│       └── VideoGamesControllerTests.cs
 │
 ├── GamesCatalogue.slnx
-├── .gitignore
 └── README.md
+
 
 
 ## Prerequisites
@@ -114,4 +124,28 @@ The API base URL and ports will be shown in the console output.
 
 Open:
 - `http://localhost:4200`
+
+
+### Testing
+
+The solution includes unit tests for the service and controller layers to ensure correct behavior and API responses.
+
+1.Service Tests
+2.Controller Tests
+
+Running Tests
+
+### To run all tests:
+
+dotnet test
+
+From Visual Studio:
+
+- Open Test Explorer
+
+- Click Run All
+
+- Confirm all Service and Controller tests pass successfully.
+
+
 

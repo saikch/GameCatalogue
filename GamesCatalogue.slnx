@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="GameCatalogue.Tests/GameCatalogue.Tests.csproj" Id="99db9ae1-885c-4515-96c4-82e87bd926ad" />
   <Project Path="GamesCatalogue.Api/GamesCatalogue.Api.csproj" />
   <Project Path="GamesCatalogue.Application/GamesCatalogue.Application.csproj" />
   <Project Path="GamesCatalogue.Infrastructure/GamesCatalogue.Infrastructure.csproj" />

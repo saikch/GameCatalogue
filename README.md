@@ -18,62 +18,23 @@ The focus of this solution is clean structure, readability, and an end-to-end wo
 - Angular Router
 - Bootstrap / ng-bootstrap (light UI styling)
 
-## Repository Structure
 
-GamesCatalogue/
-│
-├── GamesCatalogue.Api/
-│   ├── Controllers/
-│   │   └── VideoGamesController.cs
-│   ├── Properties/
-│   ├── appsettings.json
-│   ├── appsettings.Development.json
-│   └── Program.cs
-│
-├── GamesCatalogue.Application/
-│   ├── DTOs/
-│   │   ├── VideoGameDto.cs
-│   │   ├── CreateVideoGameDto.cs
-│   │   └── UpdateVideoGameDto.cs
-│   │
-│   ├── Entities/
-│   │   └── VideoGame.cs
-│   │
-│   ├── Interfaces/
-│   │   ├── IVideoGameService.cs
-│   │   └── IVideoGameRepository.cs
-│   │
-│   └── Services/
-│       └── VideoGameService.cs
-│
-├── GamesCatalogue.Infrastructure/
-│   ├── Data/
-│   │   └── ApplicationDbContext.cs
-│   │
-│   ├── Migrations/
-│   │
-│   └── Repositories/
-│       └── VideoGameRepository.cs
-│
-├── GamesCatalogue.Web.UI/
-│   └── src/
-│       └── app/
-│           └── features/
-│               └── games/
-│                   ├── models/
-│                   ├── pages/
-│                   └── services/
-│
-├── GamesCatalogue.Tests/
-│   ├── Services/
-│   │   └── VideoGameServiceTests.cs
-│   │
-│   └── Controllers/
-│       └── VideoGamesControllerTests.cs
-│
-├── GamesCatalogue.slnx
-└── README.md
+## Repository Structure (High Level)
 
+- GamesCatalogue.Api  
+  ASP.NET Core Web API (controllers, configuration)
+
+- GamesCatalogue.Application  
+  DTOs, interfaces, and application services
+
+- GamesCatalogue.Infrastructure  
+  EF Core DbContext, migrations, repositories
+
+- GamesCatalogue.Web.UI  
+  Angular frontend (list and edit pages)
+
+- GamesCatalogue.Tests  
+  Unit tests for services and controllers
 
 
 ## Prerequisites

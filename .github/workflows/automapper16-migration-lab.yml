@@ -1,0 +1,37 @@
+name: AutoMapper 16.2 Migration Lab
+
+on:
+  push:
+    branches:
+      - experiment/automapper-16-2-migration
+    paths:
+      - 'experiments/AutoMapper16MigrationLab/**'
+      - '.github/workflows/automapper16-migration-lab.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'experiments/AutoMapper16MigrationLab/**'
+      - '.github/workflows/automapper16-migration-lab.yml'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore experiments/AutoMapper16MigrationLab/AutoMapper16MigrationLab.csproj
+
+      - name: Build
+        run: dotnet build experiments/AutoMapper16MigrationLab/AutoMapper16MigrationLab.csproj --no-restore --configuration Release
+
+      - name: Run migration lab
+        run: dotnet run --project experiments/AutoMapper16MigrationLab/AutoMapper16MigrationLab.csproj --configuration Release --no-build

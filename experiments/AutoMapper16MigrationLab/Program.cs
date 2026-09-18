@@ -1,5 +1,6 @@
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Diagnostics;
 
@@ -31,6 +32,7 @@ Console.WriteLine("PASS: manual MapperConfiguration + ILoggerFactory");
 // B. Future-safe design: one DI-owned AutoMapper configuration/profile
 // shared by controllers and handlers through IMapper.
 var services = new ServiceCollection();
+services.AddSingleton<ILoggerFactory>(NullLoggerFactory.Instance);
 services.AddAutoMapper(cfg =>
 {
     // Intentionally no real license secret in this public test repository.
@@ -44,13 +46,15 @@ AssertCommentMapping(mapper, comment);
 AssertQueryRuleMapping(mapper, rule);
 Console.WriteLine("PASS: centralized Profile + DI IMapper");
 
-// C. Verify repeated mapping uses the same injected IMapper.
+// C. AddAutoMapper may create IMapper instances per resolution, but they should
+// reuse the same configuration provider. The expensive configuration should
+// not be rebuilt by each controller/handler.
 var mapperAgain = provider.GetRequiredService<IMapper>();
-if (!ReferenceEquals(mapper, mapperAgain))
+if (!ReferenceEquals(mapper.ConfigurationProvider, mapperAgain.ConfigurationProvider))
 {
-    throw new InvalidOperationException("Expected the DI-registered IMapper to be reused.");
+    throw new InvalidOperationException("Expected DI-resolved IMapper instances to share one configuration provider.");
 }
-Console.WriteLine("PASS: DI resolves the same IMapper instance");
+Console.WriteLine("PASS: DI-resolved IMapper instances share one configuration provider");
 
 // D. Lightweight comparative timing. This is not a production benchmark;
 // it only demonstrates the cost difference between reusing configuration

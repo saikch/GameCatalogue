@@ -7,6 +7,12 @@ on:
     paths:
       - 'experiments/AutoMapper16MigrationLab/**'
       - '.github/workflows/automapper16-migration-lab.yml'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - 'experiments/AutoMapper16MigrationLab/**'
+      - '.github/workflows/automapper16-migration-lab.yml'
   workflow_dispatch:
 
 jobs:
